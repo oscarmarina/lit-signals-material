@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "composite": true,
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable", "ES2023.Array"],
+    "experimentalDecorators": true,
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    "resolveJsonModule": true,
+    "allowArbitraryExtensions": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "stripInternal": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "useDefineForClassFields": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "plugins": [
+      {
+        "name": "ts-lit-plugin",
+        "rules": {
+          "no-unknown-slot": "warning",
+          "no-unknown-attribute": "warning",
+          "no-unknown-property": "warning",
+          "no-unknown-event": "warning"
+        }
+      }
+    ],
+    "types": ["mocha"]
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}

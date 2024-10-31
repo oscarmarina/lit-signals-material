@@ -1,0 +1,507 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "src/TodoApp.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)\n\nTo begin understanding the use and potential of signals with Lit, there’s nothing better than learning from experts.\nI’ve combined different approaches from:\n\n- [Reactive State with Signals in Lit by Justin Fagnani](https://justinfagnani.com/2024/10/09/reactive-state-with-signals-in-lit/)\n- [Todo App - Lit & Signals](https://lit.dev/playground/#gist=278c5029024866a2cd4c99a7f6b25e44)\n- [Todo App - Angular & Material](https://stackblitz.com/edit/stackblitz-starters-ielbus?file=src%2Fcomponents%2Ftodo-app%2Ftodo-app.html)\n\nAnd tested using:\n\n- [Signal-utils - effect](https://github.com/proposal-signals/signal-utils?tab=readme-ov-file#leaky-effect-via-queuemicrotask)\n- [When to use Lit's computed, a.k.a. `willUpdate`, vs `signals`; for dark mode](https://lit.dev/docs/components/lifecycle/#willupdate)\n- [Integrating Material Components](https://github.com/material-components/material-web)\n\n### Demo\n\n[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/oscarmarina/lit-signals-material?file=README.md)\n\n<hr>",
+          "name": "TodoApp",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#colorSchemeToIcon",
+              "privacy": "private",
+              "default": "{ light: {icon: 'light_mode', label: 'Light Theme'}, dark: {icon: 'dark_mode', label: 'Dark Theme'}, auto: {icon: 'routine', label: 'System Theme'}, }",
+              "type": {
+                "text": "{\n    light: {icon: 'light_mode', label: 'Light Theme'},\n    dark: {icon: 'dark_mode', label: 'Dark Theme'},\n    auto: {icon: 'routine', label: 'System Theme'},\n  }"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "Store"
+              },
+              "default": "store"
+            },
+            {
+              "kind": "field",
+              "name": "_currentColorScheme",
+              "default": "'light'"
+            },
+            {
+              "kind": "field",
+              "name": "_icon",
+              "type": {
+                "text": "string"
+              },
+              "default": "'light_mode'"
+            },
+            {
+              "kind": "field",
+              "name": "_label",
+              "type": {
+                "text": "string"
+              },
+              "default": "'Light Theme'"
+            },
+            {
+              "kind": "field",
+              "name": "todos",
+              "type": {
+                "text": "Todo[] | undefined"
+              },
+              "attribute": "todos"
+            },
+            {
+              "kind": "field",
+              "name": "_colorSchemeTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_progressTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_onToggleColorScheme"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "todos",
+              "type": {
+                "text": "Todo[] | undefined"
+              },
+              "fieldName": "todos"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@lit-labs/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "todo-app",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TodoApp",
+          "declaration": {
+            "name": "TodoApp",
+            "module": "src/TodoApp.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/fetch.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/index.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "TodoApp",
+          "declaration": {
+            "name": "TodoApp",
+            "module": "./TodoApp.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ToDoList",
+          "declaration": {
+            "name": "ToDoList",
+            "module": "./todo-list/ToDoList.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ToDoField",
+          "declaration": {
+            "name": "ToDoField",
+            "module": "./todo-field/ToDoField.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/store.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createStore",
+          "parameters": [
+            {
+              "name": "todos",
+              "type": {
+                "text": "Todo[]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "variable",
+          "name": "store",
+          "type": {
+            "text": "Store"
+          },
+          "default": "{ todos: signal(todos), count: computed(() => store.todos.get().length), completed: computed(() => store.todos.get().filter((item) => item.completed)), uncompleted: computed(() => store.todos.get().filter((item) => !item.completed)), completedCount: computed(() => store.completed.get().length), uncompletedCount: computed(() => store.uncompleted.get().length), inProgress: computed( () => store.count.get() > 0 && store.completedCount.get() < store.count.get() && store.completedCount.get() > 0 ), done: computed(() => store.count.get() > 0 && store.count.get() === store.completedCount.get()), setTodos(todosValue, initialize = false) { if (todosValue?.length > 0) { store.todos.set(todosValue); } else { store.todos.set(initialize ? todos : []); } }, addTodo(task, completed = false) { if (!task) { return false; } store.setTodos([...store.todos.get(), {task, completed}]); return true; }, toggleAllTodos(completed) { store.setTodos(store.todos.get().map((todo) => ({...todo, completed}))); }, toggleTodo(todo, completed) { const todoRef = todo; todoRef.completed = completed; store.setTodos([...store.todos.get()]); }, moveTodoUp(todo) { const currentTodos = store.todos.get(); const i = currentTodos.indexOf(todo); store.setTodos(moveItem(currentTodos, i, Math.max(i - 1, 0))); }, moveTodoDown(todo) { const currentTodos = store.todos.get(); const i = currentTodos.indexOf(todo); store.setTodos(moveItem(currentTodos, i, Math.min(i + 1, currentTodos.length - 1))); }, deleteTodo(toDelete) { store.setTodos(store.todos.get().filter((todo) => todo !== toDelete)); }, deleteCompletedTodos() { store.setTodos(store.todos.get().filter((todo) => !todo.completed)); }, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createStore",
+          "declaration": {
+            "name": "createStore",
+            "module": "src/store.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "store",
+          "declaration": {
+            "name": "store",
+            "module": "src/store.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/assets/icons.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "up",
+          "default": "`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 -960 960 960\"><path d=\"M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z\"/></svg>`"
+        },
+        {
+          "kind": "variable",
+          "name": "down",
+          "default": "`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 -960 960 960\"><path d=\"M440-800v487L216-537l-56 57 320 320 320-320-56-57-224 224v-487h-80Z\"/></svg>`"
+        },
+        {
+          "kind": "variable",
+          "name": "bin",
+          "default": "`<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 -960 960 960\"><path d=\"M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z\"/></svg>`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "up",
+          "declaration": {
+            "name": "up",
+            "module": "src/assets/icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "down",
+          "declaration": {
+            "name": "down",
+            "module": "src/assets/icons.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "bin",
+          "declaration": {
+            "name": "bin",
+            "module": "src/assets/icons.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/todo-app.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "todo-app",
+          "declaration": {
+            "name": "TodoApp",
+            "module": "/src/TodoApp.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/todo-field.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "todo-field",
+          "declaration": {
+            "name": "ToDoField",
+            "module": "/src/todo-field/ToDoField.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/define/todo-list.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "todo-list",
+          "declaration": {
+            "name": "ToDoList",
+            "module": "/src/todo-list/ToDoList.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/todo-app-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host { contain: content; display: block; box-sizing: border-box; max-width: min(80%, 780px); margin: 0 auto; padding: 1rem 1rem 0.5rem; background-color: var(--md-sys-color-surface-container, #f3edf7); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } div { display: flex; align-items: center; padding: 0 1.25rem; } md-icon-button { margin-left: auto; }`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/todo-app-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/todo-field/ToDoField.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ToDoField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#inputRef",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "Store"
+              },
+              "default": "store"
+            },
+            {
+              "kind": "field",
+              "name": "_textFieldTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_summaryTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_addTodoOnEnter",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "KeyboardEvent & {target: HTMLInputElement}"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_addTodoOnClick",
+              "privacy": "private"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@lit-labs/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "todo-field",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ToDoField",
+          "declaration": {
+            "name": "ToDoField",
+            "module": "src/todo-field/ToDoField.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/todo-list/ToDoList.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ToDoList",
+          "members": [
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "Store"
+              },
+              "default": "store"
+            },
+            {
+              "kind": "method",
+              "name": "_todoItemTpl",
+              "privacy": "protected",
+              "parameters": [
+                {
+                  "name": "todo",
+                  "type": {
+                    "text": "Todo"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "_todosTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_toggleChecked",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "todo",
+                  "type": {
+                    "text": "Todo"
+                  }
+                },
+                {
+                  "name": "checked",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            }
+          ],
+          "mixins": [
+            {
+              "name": "SignalWatcher",
+              "package": "@lit-labs/signals"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "todo-list",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ToDoList",
+          "declaration": {
+            "name": "ToDoList",
+            "module": "src/todo-list/ToDoList.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/todo-field/styles/todo-field-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host { display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-outlined-text-field { flex: 1; } md-filled-button { vertical-align: middle; margin-left: 0.5rem; } div { display: flex; align-items: center; padding: 1rem 1rem 0.5rem; } div + div { margin-bottom: 0.5rem; } .join { display: inline-block; margin: 0 0.25rem; color: var(--md-sys-color-primary, #6750a4); }`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/todo-field/styles/todo-field-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/todo-list/styles/todo-list-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css`:host { --md-list-item-top-space: 0; --md-list-item-bottom-space: 0; --one-line-container-height: 3.5rem; --mark-color: var(--md-sys-color-surface-container); display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-list { padding: 0; border-bottom: 0.0625rem solid var(--mark-color); } md-list-item:not(:last-child) { border-bottom: 0.125rem solid var(--mark-color); } [slot=start] { display: flex; align-items: center; width: 100%; min-height: var(--one-line-container-height); cursor: pointer; } [slot=start] > * { margin-right: 1rem; } [slot=end] { position: relative; flex: none; padding: 0.125rem; } [slot=end]::before { content: \"\"; display: block; position: absolute; inset: 0; background-color: var(--md-sys-color-on-surface, #1d1b20); opacity: 0.08; border-radius: 0.125rem; }`"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/todo-list/styles/todo-list-styles.css.ts"
+          }
+        }
+      ]
+    }
+  ]
+}
