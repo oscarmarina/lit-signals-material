@@ -2,7 +2,7 @@ import {html, LitElement, type PropertyValues} from 'lit';
 import {SignalWatcher, watch} from '@lit-labs/signals';
 import {property, state} from 'lit/decorators.js';
 import './fetch.js';
-import {store, createStore, type Todo, type Store} from './store.js';
+import {store, type Todo, type Store} from './store.js';
 import '@material/web/progress/linear-progress.js';
 import '@material/web/iconbutton/icon-button.js';
 import '@material/web/icon/icon.js';
@@ -60,7 +60,9 @@ export class TodoApp extends SignalWatcher(LitElement) {
     super.willUpdate?.(props);
 
     if (props.has('todos')) {
-      this.store = this.todos ? createStore(this.todos) : store;
+      if (this.todos) {
+        store.setTodos(this.todos);
+      }
     }
     if (props.has('_currentColorScheme')) {
       const {icon, label} = this.#colorSchemeToIcon[this._currentColorScheme];
