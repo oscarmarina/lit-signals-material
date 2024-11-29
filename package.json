@@ -170,7 +170,11 @@
     },
     "vite": {
       "command": "vite",
-      "service": true,
+      "service": {
+        "readyWhen": {
+          "lineMatches": "VITE"
+        }
+      },
       "files": [
         "vite.config.{js,ts}"
       ]
