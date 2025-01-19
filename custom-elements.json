@@ -283,27 +283,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/styles/todo-app-styles.css.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css`:host { contain: content; display: block; box-sizing: border-box; max-width: min(80%, 780px); margin: 0 auto; padding: 1rem 1rem 0.5rem; background-color: var(--md-sys-color-surface-container, #f3edf7); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } div { display: flex; align-items: center; padding: 0 1.25rem; } md-icon-button { margin-left: auto; }`"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "src/styles/todo-app-styles.css.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/todo-field/ToDoField.ts",
       "declarations": [
         {
@@ -376,6 +355,27 @@
           "declaration": {
             "name": "ToDoField",
             "module": "src/todo-field/ToDoField.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/todo-app-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { contain: content; display: block; box-sizing: border-box; max-width: min(80%, 780px); margin: 0 auto; padding: 1rem; background-color: var(--md-sys-color-surface-container, #f3edf7); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } div { display: flex; align-items: center; padding: 0 1.25rem; } md-icon-button { margin-left: auto; } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/todo-app-styles.css.ts"
           }
         }
       ]
@@ -468,7 +468,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css`:host { display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-outlined-text-field { flex: 1; } md-filled-button { vertical-align: middle; margin-left: 0.5rem; } div { display: flex; align-items: center; padding: 1rem 1rem 0.5rem; } div + div { margin-bottom: 0.5rem; } .join { display: inline-block; margin: 0 0.25rem; color: var(--md-sys-color-primary, #6750a4); }`"
+          "default": "css` :host { display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-outlined-text-field { width: -webkit-fill-available; width: -moz-available; width: stretch; } md-filled-button { vertical-align: middle; margin-left: 0.5rem; } div { display: flex; align-items: center; padding: 1rem 1rem 0.5rem; } div + div { margin-bottom: 0.5rem; } .join { display: inline-block; margin: 0 0.25rem; color: var(--md-sys-color-primary, #6750a4); } `"
         }
       ],
       "exports": [
@@ -489,7 +489,7 @@
         {
           "kind": "variable",
           "name": "styles",
-          "default": "css`:host { --md-list-item-top-space: 0; --md-list-item-bottom-space: 0; --one-line-container-height: 3.5rem; --mark-color: var(--md-sys-color-surface-container); display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-list { padding: 0; border-bottom: 0.0625rem solid var(--mark-color); } md-list-item:not(:last-child) { border-bottom: 0.125rem solid var(--mark-color); } [slot=start] { display: flex; align-items: center; width: 100%; min-height: var(--one-line-container-height); cursor: pointer; } [slot=start] > * { margin-right: 1rem; } [slot=end] { position: relative; flex: none; padding: 0.125rem; } [slot=end]::before { content: \"\"; display: block; position: absolute; inset: 0; background-color: var(--md-sys-color-on-surface, #1d1b20); opacity: 0.08; border-radius: 0.125rem; }`"
+          "default": "css` :host { --md-list-item-top-space: 0; --md-list-item-bottom-space: 0; --one-line-container-height: 3.5rem; --mark-color: var(--md-sys-color-surface-container); display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-list { padding: 0; border-bottom: 0.0625rem solid var(--mark-color); } md-list-item:not(:last-child) { border-bottom: 0.125rem solid var(--mark-color); } [slot=start] { display: flex; align-items: center; width: 100%; min-height: var(--one-line-container-height); cursor: pointer; } [slot=start] > * { margin-right: 1rem; } [slot=end] { position: relative; flex: none; padding: 0.125rem; } [slot=end]::before { content: \"\"; display: block; position: absolute; inset: 0; background-color: var(--md-sys-color-on-surface, #1d1b20); opacity: 0.08; border-radius: 0.125rem; } `"
         }
       ],
       "exports": [

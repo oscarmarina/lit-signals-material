@@ -1,36 +1,41 @@
-import {html, fixture, assert, expect, fixtureCleanup} from '@open-wc/testing';
+import {beforeAll, afterAll, suite, expect, test} from 'vitest';
+import {html} from 'lit';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
+import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
 import {TodoApp} from '../src/TodoApp.js';
 import '../src/define/todo-app.js';
 
 suite('TodoApp', () => {
   let el: TodoApp;
+  let elShadowRoot: string;
 
-  teardown(() => fixtureCleanup());
-
-  suite('Default', () => {
-    setup(async () => {
+  suite('Semantic Dom and a11y', () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <todo-app>light-dom</todo-app>
       `);
+      elShadowRoot = el?.shadowRoot!.innerHTML;
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot();
-      });
+    afterAll(() => {
+      fixtureCleanup();
+    });
 
-      test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot();
-      });
+    test('SHADOW DOM - Structure test', () => {
+      expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+    });
 
-      test.skip('a11y', async () => {
-        await assert.isAccessible(el);
-      });
+    test('LIGHT DOM - Structure test', () => {
+      expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
+    });
+
+    test.skip('a11y', async () => {
+      await a11y.isAccessible(el);
     });
   });
 
-  suite('Property', () => {
-    setup(async () => {
+  suite('Property ', () => {
+    beforeAll(async () => {
       el = await fixture(html`
         <todo-app>light-dom</todo-app>
       `);
@@ -39,16 +44,19 @@ suite('TodoApp', () => {
         {task: 'Task 2', completed: false},
         {task: 'Task 3', completed: true},
       ];
+      elShadowRoot = el?.shadowRoot!.innerHTML;
     });
 
-    suite('Semantic Dom and a11y', () => {
-      test('SHADOW DOM - Structure test', async () => {
-        await expect(el).shadowDom.to.equalSnapshot();
-      });
+    afterAll(() => {
+      fixtureCleanup();
+    });
 
-      test('LIGHT DOM - Structure test', async () => {
-        await expect(el).lightDom.to.equalSnapshot();
-      });
+    test('SHADOW DOM - Structure test', () => {
+      expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
+    });
+
+    test('LIGHT DOM - Structure test', () => {
+      expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
     });
   });
 });

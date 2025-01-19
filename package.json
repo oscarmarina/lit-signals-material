@@ -12,31 +12,34 @@
   "type": "module",
   "exports": {
     ".": {
-      "default": "./dist/src/index.js"
+      "default": "./dist/index.js"
     },
     "./package.json": {
       "default": "./package.json"
     },
     "./TodoApp.js": {
-      "default": "./dist/src/TodoApp.js"
+      "default": "./dist/TodoApp.js"
     },
     "./todo-app.js": {
-      "default": "./dist/src/define/todo-app.js"
+      "default": "./dist/define/todo-app.js"
     },
     "./index.js": {
-      "default": "./dist/src/index.js"
+      "default": "./dist/index.js"
+    },
+    "./todo-app-styles.css.js": {
+      "default": "./dist/styles/todo-app-styles.css.js"
     }
   },
-  "main": "dist/src/index.js",
-  "module": "dist/src/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "files": [
-    "/dist/",
-    "/dist/index.*",
-    "!/dist/test/"
+    "/src/",
+    "/dist/"
   ],
   "scripts": {
     "analyze": "wireit",
     "build": "wireit",
+    "build:lib": "wireit",
     "build:tsc": "wireit",
     "dev:vite": "wireit",
     "format": "wireit",
@@ -50,7 +53,7 @@
     "sort:package": "wireit",
     "start": "wireit",
     "test": "wireit",
-    "test:watch": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"OUTDIR=dist wtr --watch\"",
+    "test:watch": "vitest",
     "vite": "wireit"
   },
   "lint-staged": {
@@ -75,7 +78,6 @@
       {
         "files": "*.{scss,css}",
         "options": {
-          "printWidth": 280,
           "singleQuote": false
         }
       }
@@ -98,19 +100,21 @@
   },
   "devDependencies": {
     "@blockquote/cem-to-markdown-readme": "^1.0.0",
-    "@blockquote/coverage-table-reporter": "^1.2.0",
     "@blockquote/rollup-plugin-externalize-source-dependencies": "^1.0.0",
     "@blockquote/rollup-plugin-total-bundlesize": "^2.2.0",
     "@blockquote/sass-style-template": "^5.0.0",
     "@custom-elements-manifest/analyzer": "^0.10.4",
     "@html-eslint/eslint-plugin": "^0.32.0",
     "@html-eslint/parser": "^0.32.0",
+    "@open-wc/semantic-dom-diff": "^0.20.1",
     "@open-wc/testing": "^4.0.0",
     "@types/mocha": "^10.0.10",
     "@typescript-eslint/parser": "^8.20.0",
-    "@web/rollup-plugin-html": "^2.3.0",
-    "@web/test-runner": "^0.19.0",
-    "@web/test-runner-playwright": "^0.11.0",
+    "@vitest/browser": "^3.0.2",
+    "@vitest/coverage-istanbul": "^3.0.2",
+    "@vitest/coverage-v8": "^3.0.2",
+    "@vitest/ui": "^3.0.2",
+    "concurrently": "^9.1.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.31.0",
@@ -120,15 +124,19 @@
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.1",
+    "playwright": "^1.49.1",
     "prettier": "^3.4.2",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-node-externals": "^8.0.0",
     "sort-package-json": "^2.14.0",
     "stylelint": "^16.13.2",
     "stylelint-config-standard-scss": "^14.0.0",
-    "ts-lit-plugin": "^2.0.2",
+    "tinyglobby": "^0.2.10",
     "tslib": "^2.8.1",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0",
     "vite": "^6.0.7",
+    "vitest": "^3.0.2",
     "wireit": "^0.14.9"
   },
   "publishConfig": {
@@ -152,8 +160,8 @@
     "format:eslint": {
       "command": "eslint . --fix --color ",
       "files": [
-        ".eslintrc.js",
-        "src/**/*.{js,ts}"
+        ".eslint.config.js",
+        "src/**/*.{js,ts, html}"
       ]
     },
     "format:prettier": {
@@ -217,10 +225,28 @@
       ]
     },
     "test": {
-      "command": "tsc && OUTDIR=dist wtr",
+      "command": "vitest --run --browser.headless",
       "files": [
-        "src/**/*.{js,ts}",
+        "test/**/*.{js,ts}"
+      ]
+    },
+    "build:lib": {
+      "command": "vite build --config vite.lib.config.js",
+      "files": [
+        "vite.lib.config.js"
+      ]
+    },
+    "build:tsc": {
+      "command": "tsc",
+      "files": [
         "tsconfig.json"
+      ]
+    },
+    "build": {
+      "dependencies": [
+        "dev:vite",
+        "build:lib",
+        "build:tsc"
       ]
     }
   }

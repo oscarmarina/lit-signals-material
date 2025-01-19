@@ -19,6 +19,270 @@ And tested using:
 
 <hr>
 
-__Scaffold generated using__:
 
-> [npm init @blockquote/wc](https://github.com/oscarmarina/create-wc)
+### `src/TodoApp.ts`:
+
+#### class: `TodoApp`, `todo-app`
+
+##### Mixins
+
+| Name            | Module | Package           |
+| --------------- | ------ | ----------------- |
+| `SignalWatcher` |        | @lit-labs/signals |
+
+##### Fields
+
+| Name                  | Privacy | Type                  | Default         | Description | Inherited From |
+| --------------------- | ------- | --------------------- | --------------- | ----------- | -------------- |
+| `store`               |         | `Store`               | `store`         |             |                |
+| `_currentColorScheme` |         |                       | `'light'`       |             |                |
+| `_icon`               |         | `string`              | `'light_mode'`  |             |                |
+| `_label`              |         | `string`              | `'Light Theme'` |             |                |
+| `todos`               |         | `Todo[] \| undefined` |                 |             |                |
+
+##### Methods
+
+| Name                   | Privacy | Description | Parameters | Return | Inherited From |
+| ---------------------- | ------- | ----------- | ---------- | ------ | -------------- |
+| `_onToggleColorScheme` |         |             |            |        |                |
+
+##### Attributes
+
+| Name    | Field | Inherited From |
+| ------- | ----- | -------------- |
+| `todos` | todos |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name                 | Privacy   | Type                                                                                                                                                                   | Default                                                                                                                                                  | Description | Inherited From |
+| -------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------- |
+| `#colorSchemeToIcon` | private   | `{
+    light: {icon: 'light_mode', label: 'Light Theme'},
+    dark: {icon: 'dark_mode', label: 'Dark Theme'},
+    auto: {icon: 'routine', label: 'System Theme'},
+  }` | `{ light: {icon: 'light_mode', label: 'Light Theme'}, dark: {icon: 'dark_mode', label: 'Dark Theme'}, auto: {icon: 'routine', label: 'System Theme'}, }` |             |                |
+| `_colorSchemeTpl`    | protected |                                                                                                                                                                        |                                                                                                                                                          |             |                |
+| `_progressTpl`       | protected |                                                                                                                                                                        |                                                                                                                                                          |             |                |
+
+</details>
+
+<hr/>
+
+#### Exports
+
+| Kind | Name      | Declaration | Module         | Package |
+| ---- | --------- | ----------- | -------------- | ------- |
+| `js` | `TodoApp` | TodoApp     | src/TodoApp.ts |         |
+
+### `src/index.ts`:
+
+#### Exports
+
+| Kind | Name        | Declaration | Module                    | Package |
+| ---- | ----------- | ----------- | ------------------------- | ------- |
+| `js` | `TodoApp`   | TodoApp     | ./TodoApp.js              |         |
+| `js` | `ToDoList`  | ToDoList    | ./todo-list/ToDoList.js   |         |
+| `js` | `ToDoField` | ToDoField   | ./todo-field/ToDoField.js |         |
+
+### `src/store.ts`:
+
+#### Variables
+
+| Name    | Description | Type    |
+| ------- | ----------- | ------- |
+| `store` |             | `Store` |
+
+<hr/>
+
+#### Functions
+
+| Name          | Description | Parameters      | Return |
+| ------------- | ----------- | --------------- | ------ |
+| `createStore` |             | `todos: Todo[]` |        |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name          | Declaration | Module       | Package |
+| ---- | ------------- | ----------- | ------------ | ------- |
+| `js` | `createStore` | createStore | src/store.ts |         |
+| `js` | `store`       | store       | src/store.ts |         |
+
+### `src/assets/icons.ts`:
+
+#### Variables
+
+| Name   | Description | Type |
+| ------ | ----------- | ---- |
+| `up`   |             |      |
+| `down` |             |      |
+| `bin`  |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name   | Declaration | Module              | Package |
+| ---- | ------ | ----------- | ------------------- | ------- |
+| `js` | `up`   | up          | src/assets/icons.ts |         |
+| `js` | `down` | down        | src/assets/icons.ts |         |
+| `js` | `bin`  | bin         | src/assets/icons.ts |         |
+
+### `src/define/todo-app.ts`:
+
+#### Exports
+
+| Kind                        | Name       | Declaration | Module          | Package |
+| --------------------------- | ---------- | ----------- | --------------- | ------- |
+| `custom-element-definition` | `todo-app` | TodoApp     | /src/TodoApp.js |         |
+
+### `src/define/todo-field.ts`:
+
+#### Exports
+
+| Kind                        | Name         | Declaration | Module                       | Package |
+| --------------------------- | ------------ | ----------- | ---------------------------- | ------- |
+| `custom-element-definition` | `todo-field` | ToDoField   | /src/todo-field/ToDoField.js |         |
+
+### `src/define/todo-list.ts`:
+
+#### Exports
+
+| Kind                        | Name        | Declaration | Module                     | Package |
+| --------------------------- | ----------- | ----------- | -------------------------- | ------- |
+| `custom-element-definition` | `todo-list` | ToDoList    | /src/todo-list/ToDoList.js |         |
+
+### `src/todo-field/ToDoField.ts`:
+
+#### class: `ToDoField`, `todo-field`
+
+##### Mixins
+
+| Name            | Module | Package           |
+| --------------- | ------ | ----------------- |
+| `SignalWatcher` |        | @lit-labs/signals |
+
+##### Fields
+
+| Name    | Privacy | Type    | Default | Description | Inherited From |
+| ------- | ------- | ------- | ------- | ----------- | -------------- |
+| `store` |         | `Store` | `store` |             |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name            | Privacy   | Type | Default | Description | Inherited From |
+| --------------- | --------- | ---- | ------- | ----------- | -------------- |
+| `#inputRef`     | private   |      |         |             |                |
+| `_textFieldTpl` | protected |      |         |             |                |
+| `_summaryTpl`   | protected |      |         |             |                |
+
+##### Methods
+
+| Name              | Privacy | Description | Parameters                                       | Return | Inherited From |
+| ----------------- | ------- | ----------- | ------------------------------------------------ | ------ | -------------- |
+| `_addTodoOnEnter` | private |             | `ev: KeyboardEvent & {target: HTMLInputElement}` |        |                |
+| `_addTodoOnClick` | private |             |                                                  |        |                |
+
+</details>
+
+<hr/>
+
+#### Exports
+
+| Kind | Name        | Declaration | Module                      | Package |
+| ---- | ----------- | ----------- | --------------------------- | ------- |
+| `js` | `ToDoField` | ToDoField   | src/todo-field/ToDoField.ts |         |
+
+### `src/styles/todo-app-styles.css.ts`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                            | Package |
+| ---- | -------- | ----------- | --------------------------------- | ------- |
+| `js` | `styles` | styles      | src/styles/todo-app-styles.css.ts |         |
+
+### `src/todo-list/ToDoList.ts`:
+
+#### class: `ToDoList`, `todo-list`
+
+##### Mixins
+
+| Name            | Module | Package           |
+| --------------- | ------ | ----------------- |
+| `SignalWatcher` |        | @lit-labs/signals |
+
+##### Fields
+
+| Name    | Privacy | Type    | Default | Description | Inherited From |
+| ------- | ------- | ------- | ------- | ----------- | -------------- |
+| `store` |         | `Store` | `store` |             |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name        | Privacy   | Type | Default | Description | Inherited From |
+| ----------- | --------- | ---- | ------- | ----------- | -------------- |
+| `_todosTpl` | protected |      |         |             |                |
+
+##### Methods
+
+| Name             | Privacy   | Description | Parameters                     | Return | Inherited From |
+| ---------------- | --------- | ----------- | ------------------------------ | ------ | -------------- |
+| `_todoItemTpl`   | protected |             | `todo: Todo`                   |        |                |
+| `_toggleChecked` | private   |             | `todo: Todo, checked: boolean` |        |                |
+
+</details>
+
+<hr/>
+
+#### Exports
+
+| Kind | Name       | Declaration | Module                    | Package |
+| ---- | ---------- | ----------- | ------------------------- | ------- |
+| `js` | `ToDoList` | ToDoList    | src/todo-list/ToDoList.ts |         |
+
+### `src/todo-field/styles/todo-field-styles.css.ts`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                                         | Package |
+| ---- | -------- | ----------- | ---------------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/todo-field/styles/todo-field-styles.css.ts |         |
+
+### `src/todo-list/styles/todo-list-styles.css.ts`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                                       | Package |
+| ---- | -------- | ----------- | -------------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/todo-list/styles/todo-list-styles.css.ts |         |
