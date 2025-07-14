@@ -37,6 +37,7 @@ export const styles = css`
     align-items: center;
     padding: 1rem 1rem 0.5rem;
   }
+
   div + div {
     margin-bottom: 0.5rem;
   }

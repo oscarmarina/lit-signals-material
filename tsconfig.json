@@ -8,7 +8,12 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "lib": ["es2022", "DOM", "DOM.Iterable", "es2023.Array"],
+    "lib": [
+      "es2022",
+      "DOM",
+      "DOM.Iterable",
+      "es2023.Array"
+    ],
     "module": "es2022",
     "moduleResolution": "Bundler",
     "noFallthroughCasesInSwitch": true,
@@ -26,9 +31,13 @@
     "strict": true,
     "stripInternal": true,
     "target": "es2022",
-    "types": ["mocha"],
+    "types": [
+      "mocha"
+    ],
     "useDefineForClassFields": false,
     "verbatimModuleSyntax": true
   },
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts"
+  ]
 }

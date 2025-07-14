@@ -41,6 +41,7 @@ export const styles = css`
     min-height: var(--one-line-container-height);
     cursor: pointer;
   }
+
   [slot=start] > * {
     margin-right: 1rem;
   }
@@ -50,6 +51,7 @@ export const styles = css`
     flex: none;
     padding: 0.125rem;
   }
+
   [slot=end]::before {
     content: "";
     display: block;
