@@ -1,4 +1,5 @@
 import {html, LitElement} from 'lit';
+//import {ShowLifecycle} from '../ShowLifecycle.js';
 import {state} from 'lit/decorators.js';
 import {SignalWatcher, watch, computed} from '@lit-labs/signals';
 import {classMap} from 'lit/directives/class-map.js';
@@ -11,7 +12,7 @@ import '@material/web/iconbutton/icon-button.js';
 import * as icons from '../assets/icons.js';
 import {styles} from './styles/todo-list-styles.css.js';
 
-export class ToDoList extends SignalWatcher(LitElement) {
+export class ToDoList extends (SignalWatcher(LitElement) as unknown as typeof LitElement) {
   static override styles = [styles];
 
   @state()
@@ -22,19 +23,19 @@ export class ToDoList extends SignalWatcher(LitElement) {
       <md-list-item type="button" class="${classMap({completed: todo.completed})}">
         <label slot="start">
           <md-checkbox
-            @change=${({target}: Event & {target: HTMLInputElement}) =>
-              this._toggleChecked(todo, target.checked)}
-            .checked=${todo.completed}></md-checkbox>
+            @change="${({target}: Event & {target: HTMLInputElement}) =>
+              this._toggleChecked(todo, target.checked)}"
+            .checked="${todo.completed}"></md-checkbox>
           ${todo.task}
         </label>
         <div slot="end">
-          <md-icon-button aria-label="Up" @click=${() => this.store.moveTodoUp(todo)}>
+          <md-icon-button aria-label="Up" @click="${() => this.store.moveTodoUp(todo)}">
             ${unsafeHTML(icons.up)}
           </md-icon-button>
-          <md-icon-button aria-label="Down" @click=${() => this.store.moveTodoDown(todo)}>
+          <md-icon-button aria-label="Down" @click="${() => this.store.moveTodoDown(todo)}">
             ${unsafeHTML(icons.down)}
           </md-icon-button>
-          <md-icon-button aria-label="Delete" @click=${() => this.store.deleteTodo(todo)}>
+          <md-icon-button aria-label="Delete" @click="${() => this.store.deleteTodo(todo)}">
             ${unsafeHTML(icons.bin)}
           </md-icon-button>
         </div>

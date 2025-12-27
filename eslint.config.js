@@ -1,7 +1,7 @@
 import js from '@eslint/js';
 import {configs as wc} from 'eslint-plugin-wc';
 import {configs as lit} from 'eslint-plugin-lit';
-import litA11y from 'eslint-plugin-lit-a11y';
+import {default as litA11y} from 'eslint-plugin-lit-a11y';
 import {flatConfigs as importPlugin} from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
 import tsParser from '@typescript-eslint/parser';
@@ -125,7 +125,7 @@ const htmlFilesConfig = [htmlEslint.configs['flat/recommended']].map((conf) => (
 const htmlFilesRules = {
   files: ['**/*.html'],
   rules: {
-    '@html-eslint/indent': ['error', 2],
+    '@html-eslint/indent': 'off',
     '@html-eslint/require-closing-tags': 'off',
     '@html-eslint/no-extra-spacing-attrs': 'off',
     '@html-eslint/attrs-newline': 'off',
@@ -187,25 +187,11 @@ export default [
     },
 
     rules: {
-      'class-methods-use-this': 'off',
       'no-unused-expressions': [
         'error',
         {
           allowShortCircuit: true,
           allowTernary: true,
-        },
-      ],
-      'object-curly-newline': 'off',
-      indent: [
-        'error',
-        2,
-        {
-          SwitchCase: 1,
-          ignoredNodes: [
-            'PropertyDefinition',
-            'TemplateLiteral *',
-            'ArrowFunctionExpression ClassExpression',
-          ],
         },
       ],
       'no-empty-function': 'error',

@@ -1,15 +1,19 @@
-import {beforeAll, afterAll, suite, expect, test} from 'vitest';
+import {describe, it, expect, beforeAll, afterAll, chai} from 'vitest';
+// import {type LocatorSelectors, utils} from 'vitest/browser';
+import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
+import {chaiA11yAxe} from 'chai-a11y-axe';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
-import {getDiffableHTML} from '@open-wc/semantic-dom-diff';
-import {assert as a11y, fixture, fixtureCleanup} from '@open-wc/testing';
 import {TodoApp} from '../src/TodoApp.js';
 import '../src/define/todo-app.js';
 
-suite('TodoApp', () => {
+chai.use(chaiA11yAxe);
+
+describe('TodoApp', () => {
   let el: TodoApp;
   let elShadowRoot: string;
 
-  suite('Semantic Dom and a11y', () => {
+  describe('Semantic Dom and a11y', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <todo-app>light-dom</todo-app>
@@ -21,20 +25,20 @@ suite('TodoApp', () => {
       fixtureCleanup();
     });
 
-    test('SHADOW DOM - Structure test', () => {
+    it('SHADOW DOM - Structure it', () => {
       expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('LIGHT DOM - Structure test', () => {
+    it('LIGHT DOM - Structure it', () => {
       expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
     });
 
-    test.skip('a11y', async () => {
-      await a11y.isAccessible(el);
+    it.skip('a11y', async () => {
+      await expect(el).accessible();
     });
   });
 
-  suite('Property ', () => {
+  describe('Property ', () => {
     beforeAll(async () => {
       el = await fixture(html`
         <todo-app>light-dom</todo-app>
@@ -51,11 +55,11 @@ suite('TodoApp', () => {
       fixtureCleanup();
     });
 
-    test('SHADOW DOM - Structure test', () => {
+    it('SHADOW DOM - Structure it', () => {
       expect(getDiffableHTML(elShadowRoot)).toMatchSnapshot('SHADOW DOM');
     });
 
-    test('LIGHT DOM - Structure test', () => {
+    it('LIGHT DOM - Structure it', () => {
       expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
     });
   });

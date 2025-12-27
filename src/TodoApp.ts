@@ -1,4 +1,5 @@
 import {html, LitElement, type PropertyValues} from 'lit';
+// import {ShowLifecycle} from './ShowLifecycle.js';
 import {SignalWatcher, watch} from '@lit-labs/signals';
 import {property, state} from 'lit/decorators.js';
 import './fetch.js';
@@ -32,7 +33,7 @@ import {styles} from './styles/todo-app-styles.css.js';
  *
  * <hr>
  */
-export class TodoApp extends SignalWatcher(LitElement) {
+export class TodoApp extends (SignalWatcher(LitElement) as unknown as typeof LitElement) {
   #colorSchemeToIcon = {
     light: {icon: 'light_mode', label: 'Light Theme'},
     dark: {icon: 'dark_mode', label: 'Dark Theme'},
@@ -55,6 +56,8 @@ export class TodoApp extends SignalWatcher(LitElement) {
 
   @property({type: Array})
   todos?: Todo[];
+
+  // updateEffect(() => console.log('updateEffect'));
 
   override willUpdate(props: PropertyValues<this>) {
     super.willUpdate?.(props);
@@ -98,8 +101,8 @@ export class TodoApp extends SignalWatcher(LitElement) {
     return html`
       <md-linear-progress
         aria-label="Total tasks progress"
-        .value=${watch(this.store.completedCount)}
-        .max=${watch(this.store.count)}></md-linear-progress>
+        .value="${watch(this.store.completedCount)}"
+        .max="${watch(this.store.count)}"></md-linear-progress>
     `;
   }
 
