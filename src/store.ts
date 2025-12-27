@@ -1,4 +1,4 @@
-import {signal, computed} from '@lit-labs/signals';
+import {computed, signal} from '@lit-labs/signals';
 
 export interface Todo {
   task: string;

@@ -4,6 +4,33 @@
   "modules": [
     {
       "kind": "javascript-module",
+      "path": "src/ShowLifecycle.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ShowLifecycle",
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ShowLifecycle",
+          "declaration": {
+            "name": "ShowLifecycle",
+            "module": "src/ShowLifecycle.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/TodoApp.ts",
       "declarations": [
         {
@@ -83,15 +110,8 @@
               "fieldName": "todos"
             }
           ],
-          "mixins": [
-            {
-              "name": "SignalWatcher",
-              "package": "@lit-labs/signals"
-            }
-          ],
           "superclass": {
-            "name": "LitElement",
-            "package": "lit"
+            "module": "/src/fetch.js"
           },
           "tagName": "todo-app",
           "customElement": true
@@ -129,18 +149,18 @@
         },
         {
           "kind": "js",
-          "name": "ToDoList",
-          "declaration": {
-            "name": "ToDoList",
-            "module": "./todo-list/ToDoList.js"
-          }
-        },
-        {
-          "kind": "js",
           "name": "ToDoField",
           "declaration": {
             "name": "ToDoField",
             "module": "./todo-field/ToDoField.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ToDoList",
+          "declaration": {
+            "name": "ToDoList",
+            "module": "./todo-list/ToDoList.js"
           }
         }
       ]
@@ -283,84 +303,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/todo-field/ToDoField.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "ToDoField",
-          "members": [
-            {
-              "kind": "field",
-              "name": "#inputRef",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "store",
-              "type": {
-                "text": "Store"
-              },
-              "default": "store"
-            },
-            {
-              "kind": "field",
-              "name": "_textFieldTpl",
-              "privacy": "protected",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_summaryTpl",
-              "privacy": "protected",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "_addTodoOnEnter",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "ev",
-                  "type": {
-                    "text": "KeyboardEvent & {target: HTMLInputElement}"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_addTodoOnClick",
-              "privacy": "private"
-            }
-          ],
-          "mixins": [
-            {
-              "name": "SignalWatcher",
-              "package": "@lit-labs/signals"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "tagName": "todo-field",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ToDoField",
-          "declaration": {
-            "name": "ToDoField",
-            "module": "src/todo-field/ToDoField.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "src/styles/todo-app-styles.css.ts",
       "declarations": [
         {
@@ -436,15 +378,8 @@
               ]
             }
           ],
-          "mixins": [
-            {
-              "name": "SignalWatcher",
-              "package": "@lit-labs/signals"
-            }
-          ],
           "superclass": {
-            "name": "LitElement",
-            "package": "lit"
+            "package": "@material/web/list/list.js"
           },
           "tagName": "todo-list",
           "customElement": true
@@ -463,21 +398,71 @@
     },
     {
       "kind": "javascript-module",
-      "path": "src/todo-field/styles/todo-field-styles.css.ts",
+      "path": "src/todo-field/ToDoField.ts",
       "declarations": [
         {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-outlined-text-field { width: -webkit-fill-available; width: -moz-available; width: stretch; } md-filled-button { vertical-align: middle; margin-left: 0.5rem; } div { display: flex; align-items: center; padding: 1rem 1rem 0.5rem; } div + div { margin-bottom: 0.5rem; } .join { display: inline-block; margin: 0 0.25rem; color: var(--md-sys-color-primary, #6750a4); } `"
+          "kind": "class",
+          "description": "",
+          "name": "ToDoField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#inputRef",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "Store"
+              },
+              "default": "store"
+            },
+            {
+              "kind": "field",
+              "name": "_textFieldTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_summaryTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_addTodoOnEnter",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "KeyboardEvent & {target: HTMLInputElement}"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_addTodoOnClick",
+              "privacy": "private"
+            }
+          ],
+          "superclass": {
+            "package": "@material/web/button/filled-button.js"
+          },
+          "tagName": "todo-field",
+          "customElement": true
         }
       ],
       "exports": [
         {
           "kind": "js",
-          "name": "styles",
+          "name": "ToDoField",
           "declaration": {
-            "name": "styles",
-            "module": "src/todo-field/styles/todo-field-styles.css.ts"
+            "name": "ToDoField",
+            "module": "src/todo-field/ToDoField.ts"
           }
         }
       ]
@@ -499,6 +484,27 @@
           "declaration": {
             "name": "styles",
             "module": "src/todo-list/styles/todo-list-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/todo-field/styles/todo-field-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-outlined-text-field { width: -webkit-fill-available; width: -moz-available; width: stretch; } md-filled-button { vertical-align: middle; margin-left: 0.5rem; } div { display: flex; align-items: center; padding: 1rem 1rem 0.5rem; } div + div { margin-bottom: 0.5rem; } .join { display: inline-block; margin: 0 0.25rem; color: var(--md-sys-color-primary, #6750a4); } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/todo-field/styles/todo-field-styles.css.ts"
           }
         }
       ]

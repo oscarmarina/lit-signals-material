@@ -1,1 +1,1 @@
-import '../src/define/todo-app.ts';
+import '../src/define/todo-app.js';

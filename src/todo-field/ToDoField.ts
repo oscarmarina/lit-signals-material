@@ -1,14 +1,15 @@
-import {html, LitElement} from 'lit';
-import {ref, createRef} from 'lit/directives/ref.js';
-import {state} from 'lit/decorators.js';
 import {SignalWatcher, watch} from '@lit-labs/signals';
-import {store, type Store} from '../store.js';
+import {html, LitElement} from 'lit';
+import {state} from 'lit/decorators.js';
+//import {ShowLifecycle} from '../ShowLifecycle.js';
+import {createRef, ref} from 'lit/directives/ref.js';
+import {type Store, store} from '../store.js';
 import '@material/web/button/filled-button.js';
 import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/checkbox/checkbox.js';
 import {styles} from './styles/todo-field-styles.css.js';
 
-export class ToDoField extends SignalWatcher(LitElement) {
+export class ToDoField extends (SignalWatcher(LitElement) as unknown as typeof LitElement) {
   static override styles = [styles];
 
   #inputRef = createRef<HTMLInputElement>();
@@ -54,10 +55,10 @@ export class ToDoField extends SignalWatcher(LitElement) {
         <span class="join">︱</span>
         <md-checkbox
           aria-label="Select all checkboxes"
-          @change=${({target}: Event & {target: HTMLInputElement}) =>
-            this.store.toggleAllTodos(target.checked)}
-          .checked=${watch(this.store.done)}
-          .indeterminate=${watch(this.store.inProgress)}></md-checkbox>
+          @change="${({target}: Event & {target: HTMLInputElement}) =>
+            this.store.toggleAllTodos(target.checked)}"
+          .checked="${watch(this.store.done)}"
+          .indeterminate="${watch(this.store.inProgress)}"></md-checkbox>
       </div>
     `;
   }

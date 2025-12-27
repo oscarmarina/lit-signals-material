@@ -1,6 +1,6 @@
-import {defineConfig} from 'vite';
 import {nodeExternals} from 'rollup-plugin-node-externals';
 import {globSync} from 'tinyglobby';
+import {defineConfig} from 'vite';
 
 const ENTRIES_DIR = 'src';
 const ENTRIES_GLOB = [`${ENTRIES_DIR}/**/*.ts`];

@@ -30,7 +30,7 @@
 **/storybook-static
 ## end gitignore
 
-## specific prettierignore
+## specific linterignore
 **/*.d.ts
 **/package-lock.json
 **/*.min.js
