@@ -1,10 +1,10 @@
+import {computed, SignalWatcher, watch} from '@lit-labs/signals';
 import {html, LitElement} from 'lit';
 //import {ShowLifecycle} from '../ShowLifecycle.js';
 import {state} from 'lit/decorators.js';
-import {SignalWatcher, watch, computed} from '@lit-labs/signals';
 import {classMap} from 'lit/directives/class-map.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
-import {store, type Store, type Todo} from '../store.js';
+import {type Store, store, type Todo} from '../store.js';
 import '@material/web/list/list.js';
 import '@material/web/list/list-item.js';
 import '@material/web/checkbox/checkbox.js';

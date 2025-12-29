@@ -1,0 +1,199 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.10/schema.json",
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    },
+    "enabled": true
+  },
+  "files": {
+    "includes": [
+      "**",
+      "!**/.idea",
+      "!**/custom-elements.json",
+      "!**/package*.json",
+      "!**/.vscode",
+      "!**/.code-workspace",
+      "!**/.DS_Store",
+      "!**/node_modules",
+      "!**/npm-debug.log",
+      "!**/*-debug.log",
+      "!**/yarn-error.log",
+      "!**/coverage",
+      "!**/reports",
+      "!**/*screenshots*",
+      "!**/*snapshots*",
+      "!**/_site",
+      "!**/dist",
+      "!**/dev",
+      "!**/build",
+      "!**/.tmp",
+      "!**/.wireit",
+      "!**/*.tgz",
+      "!**/*.tsbuildinfo",
+      "!**/storybook-static",
+      "!**/*.d.ts",
+      "!**/package-lock.json",
+      "!**/*.min.js",
+      "!**/*-styles*.js",
+      "!**/*-styles*.ts",
+      "!**/CHANGELOG.md"
+    ]
+  },
+  "formatter": {
+    "attributePosition": "auto",
+    "bracketSameLine": true,
+    "bracketSpacing": false,
+    "enabled": true,
+    "expand": "auto",
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 100,
+    "useEditorconfig": true
+  },
+  "html": {
+    "formatter": {
+      "indentScriptAndStyle": false,
+      "selfCloseVoidElements": "always"
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "attributePosition": "auto",
+      "bracketSameLine": false,
+      "bracketSpacing": false,
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "trailingCommas": "es5"
+    },
+    "globals": []
+  },
+  "json": {
+    "formatter": {
+      "expand": "always"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "a11y": "on",
+      "complexity": "on",
+      "correctness": {
+        "recommended": true,
+        "useImportExtensions": "off"
+      },
+      "performance": "on",
+      "security": "on",
+      "style": "on",
+      "suspicious": "on"
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "**/*"
+      ],
+      "linter": {
+        "rules": {
+          "security": {
+            "noSecrets": {
+              "level": "on",
+              "options": {
+                "entropyThreshold": 65
+              }
+            }
+          },
+          "style": {
+            "noNonNullAssertion": "off",
+            "useNamingConvention": "off"
+          },
+          "suspicious": {
+            "useAdjacentOverloadSignatures": "off"
+          }
+        }
+      }
+    },
+    {
+      "assist": {
+        "actions": {
+          "source": {
+            "useSortedKeys": "on"
+          }
+        }
+      },
+      "includes": [
+        "**/*.json",
+        "**/*.jsonc"
+      ]
+    },
+    {
+      "includes": [
+        "*.cjs",
+        "*.js",
+        "*.ts",
+        "scripts/**/*.js",
+        "!index.*"
+      ],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noNodejsModules": "off"
+          },
+          "style": {
+            "noDefaultExport": "off"
+          },
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "**/*.ts"
+      ],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUndeclaredVariables": "off",
+            "noUnusedImports": {
+              "fix": "safe",
+              "level": "on"
+            }
+          },
+          "style": {
+            "useConsistentMemberAccessibility": "error"
+          }
+        }
+      }
+    },
+    {
+      "includes": [
+        "test/**/*.ts"
+      ],
+      "linter": {
+        "rules": {
+          "complexity": {
+            "noExcessiveLinesPerFunction": "off"
+          },
+          "style": {
+            "noMagicNumbers": "off",
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
+    }
+  ],
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  }
+}

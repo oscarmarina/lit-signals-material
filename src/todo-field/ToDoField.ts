@@ -1,9 +1,9 @@
-import {html, LitElement} from 'lit';
-//import {ShowLifecycle} from '../ShowLifecycle.js';
-import {ref, createRef} from 'lit/directives/ref.js';
-import {state} from 'lit/decorators.js';
 import {SignalWatcher, watch} from '@lit-labs/signals';
-import {store, type Store} from '../store.js';
+import {html, LitElement} from 'lit';
+import {state} from 'lit/decorators.js';
+//import {ShowLifecycle} from '../ShowLifecycle.js';
+import {createRef, ref} from 'lit/directives/ref.js';
+import {type Store, store} from '../store.js';
 import '@material/web/button/filled-button.js';
 import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/checkbox/checkbox.js';

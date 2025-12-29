@@ -1,9 +1,9 @@
-import {html, LitElement, type PropertyValues} from 'lit';
 // import {ShowLifecycle} from './ShowLifecycle.js';
 import {SignalWatcher, watch} from '@lit-labs/signals';
+import {html, LitElement, type PropertyValues} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import './fetch.js';
-import {store, type Todo, type Store} from './store.js';
+import {type Store, store, type Todo} from './store.js';
 import '@material/web/progress/linear-progress.js';
 import '@material/web/iconbutton/icon-button.js';
 import '@material/web/icon/icon.js';
@@ -11,6 +11,7 @@ import './define/todo-field.js';
 import './define/todo-list.js';
 import {styles} from './styles/todo-app-styles.css.js';
 
+// https://github.com/haydenbleasel/ultracite
 /**
  * ![Lit](https://img.shields.io/badge/lit-3.0.0-blue.svg)
  *
@@ -57,16 +58,13 @@ export class TodoApp extends (SignalWatcher(LitElement) as unknown as typeof Lit
   @property({type: Array})
   todos?: Todo[];
 
-  // updateEffect(() => console.log('updateEffect'));
-
   override willUpdate(props: PropertyValues<this>) {
     super.willUpdate?.(props);
 
-    if (props.has('todos')) {
-      if (this.todos) {
-        store.setTodos(this.todos);
-      }
+    if (props.has('todos') && this.todos) {
+      store.setTodos(this.todos);
     }
+
     if (props.has('_currentColorScheme')) {
       const {icon, label} = this.#colorSchemeToIcon[this._currentColorScheme];
       this._icon = icon;

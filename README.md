@@ -19,16 +19,9 @@ And tested using:
 
 <hr>
 
-
 ### `src/TodoApp.ts`:
 
 #### class: `TodoApp`, `todo-app`
-
-##### Mixins
-
-| Name            | Module | Package           |
-| --------------- | ------ | ----------------- |
-| `SignalWatcher` |        | @lit-labs/signals |
 
 ##### Fields
 
@@ -56,15 +49,17 @@ And tested using:
 
 ##### Fields
 
-| Name                 | Privacy   | Type                                                                                                                                                                   | Default                                                                                                                                                  | Description | Inherited From |
-| -------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | -------------- |
-| `#colorSchemeToIcon` | private   | `{
+| Name                 | Privacy | Type | Default | Description | Inherited From |
+| -------------------- | ------- | ---- | ------- | ----------- | -------------- |
+| `#colorSchemeToIcon` | private | `{   |
+
     light: {icon: 'light_mode', label: 'Light Theme'},
     dark: {icon: 'dark_mode', label: 'Dark Theme'},
     auto: {icon: 'routine', label: 'System Theme'},
-  }` | `{ light: {icon: 'light_mode', label: 'Light Theme'}, dark: {icon: 'dark_mode', label: 'Dark Theme'}, auto: {icon: 'routine', label: 'System Theme'}, }` |             |                |
-| `_colorSchemeTpl`    | protected |                                                                                                                                                                        |                                                                                                                                                          |             |                |
-| `_progressTpl`       | protected |                                                                                                                                                                        |                                                                                                                                                          |             |                |
+
+}`|`{ light: {icon: 'light_mode', label: 'Light Theme'}, dark: {icon: 'dark_mode', label: 'Dark Theme'}, auto: {icon: 'routine', label: 'System Theme'}, }`|             |                |
+|`\_colorSchemeTpl`   | protected |                                                                                                                                                                        |                                                                                                                                                          |             |                |
+|`\_progressTpl` | protected | | | | |
 
 </details>
 
@@ -83,8 +78,8 @@ And tested using:
 | Kind | Name        | Declaration | Module                    | Package |
 | ---- | ----------- | ----------- | ------------------------- | ------- |
 | `js` | `TodoApp`   | TodoApp     | ./TodoApp.js              |         |
-| `js` | `ToDoList`  | ToDoList    | ./todo-list/ToDoList.js   |         |
 | `js` | `ToDoField` | ToDoField   | ./todo-field/ToDoField.js |         |
+| `js` | `ToDoList`  | ToDoList    | ./todo-list/ToDoList.js   |         |
 
 ### `src/store.ts`:
 
@@ -155,15 +150,60 @@ And tested using:
 | --------------------------- | ----------- | ----------- | -------------------------- | ------- |
 | `custom-element-definition` | `todo-list` | ToDoList    | /src/todo-list/ToDoList.js |         |
 
+### `src/styles/todo-app-styles.css.ts`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                            | Package |
+| ---- | -------- | ----------- | --------------------------------- | ------- |
+| `js` | `styles` | styles      | src/styles/todo-app-styles.css.ts |         |
+
+### `src/todo-list/ToDoList.ts`:
+
+#### class: `ToDoList`, `todo-list`
+
+##### Fields
+
+| Name    | Privacy | Type    | Default | Description | Inherited From |
+| ------- | ------- | ------- | ------- | ----------- | -------------- |
+| `store` |         | `Store` | `store` |             |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name        | Privacy   | Type | Default | Description | Inherited From |
+| ----------- | --------- | ---- | ------- | ----------- | -------------- |
+| `_todosTpl` | protected |      |         |             |                |
+
+##### Methods
+
+| Name             | Privacy   | Description | Parameters                     | Return | Inherited From |
+| ---------------- | --------- | ----------- | ------------------------------ | ------ | -------------- |
+| `_todoItemTpl`   | protected |             | `todo: Todo`                   |        |                |
+| `_toggleChecked` | private   |             | `todo: Todo, checked: boolean` |        |                |
+
+</details>
+
+<hr/>
+
+#### Exports
+
+| Kind | Name       | Declaration | Module                    | Package |
+| ---- | ---------- | ----------- | ------------------------- | ------- |
+| `js` | `ToDoList` | ToDoList    | src/todo-list/ToDoList.ts |         |
+
 ### `src/todo-field/ToDoField.ts`:
 
 #### class: `ToDoField`, `todo-field`
-
-##### Mixins
-
-| Name            | Module | Package           |
-| --------------- | ------ | ----------------- |
-| `SignalWatcher` |        | @lit-labs/signals |
 
 ##### Fields
 
@@ -198,7 +238,7 @@ And tested using:
 | ---- | ----------- | ----------- | --------------------------- | ------- |
 | `js` | `ToDoField` | ToDoField   | src/todo-field/ToDoField.ts |         |
 
-### `src/styles/todo-app-styles.css.ts`:
+### `src/todo-list/styles/todo-list-styles.css.ts`:
 
 #### Variables
 
@@ -210,50 +250,9 @@ And tested using:
 
 #### Exports
 
-| Kind | Name     | Declaration | Module                            | Package |
-| ---- | -------- | ----------- | --------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/todo-app-styles.css.ts |         |
-
-### `src/todo-list/ToDoList.ts`:
-
-#### class: `ToDoList`, `todo-list`
-
-##### Mixins
-
-| Name            | Module | Package           |
-| --------------- | ------ | ----------------- |
-| `SignalWatcher` |        | @lit-labs/signals |
-
-##### Fields
-
-| Name    | Privacy | Type    | Default | Description | Inherited From |
-| ------- | ------- | ------- | ------- | ----------- | -------------- |
-| `store` |         | `Store` | `store` |             |                |
-
-<details><summary>Private API</summary>
-
-##### Fields
-
-| Name        | Privacy   | Type | Default | Description | Inherited From |
-| ----------- | --------- | ---- | ------- | ----------- | -------------- |
-| `_todosTpl` | protected |      |         |             |                |
-
-##### Methods
-
-| Name             | Privacy   | Description | Parameters                     | Return | Inherited From |
-| ---------------- | --------- | ----------- | ------------------------------ | ------ | -------------- |
-| `_todoItemTpl`   | protected |             | `todo: Todo`                   |        |                |
-| `_toggleChecked` | private   |             | `todo: Todo, checked: boolean` |        |                |
-
-</details>
-
-<hr/>
-
-#### Exports
-
-| Kind | Name       | Declaration | Module                    | Package |
-| ---- | ---------- | ----------- | ------------------------- | ------- |
-| `js` | `ToDoList` | ToDoList    | src/todo-list/ToDoList.ts |         |
+| Kind | Name     | Declaration | Module                                       | Package |
+| ---- | -------- | ----------- | -------------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/todo-list/styles/todo-list-styles.css.ts |         |
 
 ### `src/todo-field/styles/todo-field-styles.css.ts`:
 
@@ -271,18 +270,14 @@ And tested using:
 | ---- | -------- | ----------- | ---------------------------------------------- | ------- |
 | `js` | `styles` | styles      | src/todo-field/styles/todo-field-styles.css.ts |         |
 
-### `src/todo-list/styles/todo-list-styles.css.ts`:
+### `src/ShowLifecycle.ts`:
 
-#### Variables
-
-| Name     | Description | Type |
-| -------- | ----------- | ---- |
-| `styles` |             |      |
+#### class: `ShowLifecycle`
 
 <hr/>
 
 #### Exports
 
-| Kind | Name     | Declaration | Module                                       | Package |
-| ---- | -------- | ----------- | -------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/todo-list/styles/todo-list-styles.css.ts |         |
+| Kind | Name            | Declaration   | Module               | Package |
+| ---- | --------------- | ------------- | -------------------- | ------- |
+| `js` | `ShowLifecycle` | ShowLifecycle | src/ShowLifecycle.ts |         |

@@ -1,10 +1,10 @@
-import {describe, it, expect, beforeAll, afterAll, chai} from 'vitest';
+import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 // import {type LocatorSelectors, utils} from 'vitest/browser';
 import {fixture, fixtureCleanup} from '@open-wc/testing-helpers';
 import {chaiA11yAxe} from 'chai-a11y-axe';
-import {getDiffableHTML} from '@open-wc/semantic-dom-diff/get-diffable-html.js';
 import {html} from 'lit';
-import {TodoApp} from '../src/TodoApp.js';
+import {afterAll, beforeAll, chai, describe, expect, it} from 'vitest';
+import type {TodoApp} from '../src/TodoApp.js';
 import '../src/define/todo-app.js';
 
 chai.use(chaiA11yAxe);
@@ -18,7 +18,7 @@ describe('TodoApp', () => {
       el = await fixture(html`
         <todo-app>light-dom</todo-app>
       `);
-      elShadowRoot = el?.shadowRoot!.innerHTML;
+      elShadowRoot = el?.shadowRoot?.innerHTML ?? '';
     });
 
     afterAll(() => {
@@ -48,7 +48,7 @@ describe('TodoApp', () => {
         {task: 'Task 2', completed: false},
         {task: 'Task 3', completed: true},
       ];
-      elShadowRoot = el?.shadowRoot!.innerHTML;
+      elShadowRoot = el?.shadowRoot?.innerHTML ?? '';
     });
 
     afterAll(() => {

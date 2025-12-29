@@ -1,9 +1,9 @@
-import {defineConfig} from 'vite';
-import {playwright} from '@vitest/browser-playwright';
-import {globSync} from 'tinyglobby';
-import minifyHTML from '@lit-labs/rollup-plugin-minify-html-literals';
-import copy from 'rollup-plugin-copy';
 import totalBundlesize from '@blockquote/rollup-plugin-total-bundlesize';
+// import minifyHTML from '@lit-labs/rollup-plugin-minify-html-literals';
+import {playwright} from '@vitest/browser-playwright';
+import copy from 'rollup-plugin-copy';
+import {globSync} from 'tinyglobby';
+import {defineConfig} from 'vite';
 
 const OUT_DIR = 'dev';
 const ENTRIES_DIR = 'demo';
