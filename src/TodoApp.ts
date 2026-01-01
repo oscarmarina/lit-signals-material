@@ -57,6 +57,16 @@ export class TodoApp extends (SignalWatcher(LitElement) as unknown as typeof Lit
   @property({type: Array})
   todos?: Todo[];
 
+  constructor() {
+    super();
+    // @ts-expect-error: Unreachable code error
+    this.updateEffect(() => {
+      const ratio = this.store.progressRatio.get();
+      const opacity = 0.3 + ratio * 0.7;
+      this.style.setProperty('--_opacity', `${opacity}`);
+    });
+  }
+
   override willUpdate(props: PropertyValues<this>) {
     super.willUpdate?.(props);
 
@@ -77,7 +87,7 @@ export class TodoApp extends (SignalWatcher(LitElement) as unknown as typeof Lit
         <slot></slot>
         ${this._colorSchemeTpl}
       </div>
-      <todo-field autofocus .store="${this.store}"></todo-field>
+      <todo-field .store="${this.store}"></todo-field>
       ${this._progressTpl}
       <todo-list .store="${this.store}"></todo-list>
     `;

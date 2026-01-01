@@ -150,22 +150,6 @@ And tested using:
 | --------------------------- | ----------- | ----------- | -------------------------- | ------- |
 | `custom-element-definition` | `todo-list` | ToDoList    | /src/todo-list/ToDoList.js |         |
 
-### `src/styles/todo-app-styles.css.ts`:
-
-#### Variables
-
-| Name     | Description | Type |
-| -------- | ----------- | ---- |
-| `styles` |             |      |
-
-<hr/>
-
-#### Exports
-
-| Kind | Name     | Declaration | Module                            | Package |
-| ---- | -------- | ----------- | --------------------------------- | ------- |
-| `js` | `styles` | styles      | src/styles/todo-app-styles.css.ts |         |
-
 ### `src/todo-list/ToDoList.ts`:
 
 #### class: `ToDoList`, `todo-list`
@@ -237,6 +221,22 @@ And tested using:
 | Kind | Name        | Declaration | Module                      | Package |
 | ---- | ----------- | ----------- | --------------------------- | ------- |
 | `js` | `ToDoField` | ToDoField   | src/todo-field/ToDoField.ts |         |
+
+### `src/styles/todo-app-styles.css.ts`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                            | Package |
+| ---- | -------- | ----------- | --------------------------------- | ------- |
+| `js` | `styles` | styles      | src/styles/todo-app-styles.css.ts |         |
 
 ### `src/todo-list/styles/todo-list-styles.css.ts`:
 

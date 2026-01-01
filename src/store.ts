@@ -14,6 +14,7 @@ export interface Store {
   uncompletedCount: ReturnType<typeof computed<number>>;
   inProgress: ReturnType<typeof computed<boolean>>;
   done: ReturnType<typeof computed<boolean>>;
+  progressRatio: ReturnType<typeof computed<number>>;
   setTodos: (todosValue: Todo[], initialize?: boolean) => void;
   addTodo: (task: string, completed?: boolean) => boolean;
   toggleAllTodos: (completed: boolean) => void;
@@ -42,6 +43,10 @@ export const createStore = (todos: Todo[]) => {
         store.completedCount.get() > 0
     ),
     done: computed(() => store.count.get() > 0 && store.count.get() === store.completedCount.get()),
+    progressRatio: computed(() => {
+      const count = store.count.get();
+      return count > 0 ? store.completedCount.get() / count : 0;
+    }),
     setTodos(todosValue, initialize = false) {
       if (todosValue?.length > 0) {
         store.todos.set(todosValue);

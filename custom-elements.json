@@ -187,7 +187,7 @@
           "type": {
             "text": "Store"
           },
-          "default": "{ todos: signal(todos), count: computed(() => store.todos.get().length), completed: computed(() => store.todos.get().filter((item) => item.completed)), uncompleted: computed(() => store.todos.get().filter((item) => !item.completed)), completedCount: computed(() => store.completed.get().length), uncompletedCount: computed(() => store.uncompleted.get().length), inProgress: computed( () => store.count.get() > 0 && store.completedCount.get() < store.count.get() && store.completedCount.get() > 0 ), done: computed(() => store.count.get() > 0 && store.count.get() === store.completedCount.get()), setTodos(todosValue, initialize = false) { if (todosValue?.length > 0) { store.todos.set(todosValue); } else { store.todos.set(initialize ? todos : []); } }, addTodo(task, completed = false) { if (!task) { return false; } store.setTodos([...store.todos.get(), {task, completed}]); return true; }, toggleAllTodos(completed) { store.setTodos(store.todos.get().map((todo) => ({...todo, completed}))); }, toggleTodo(todo, completed) { const todoRef = todo; todoRef.completed = completed; store.setTodos([...store.todos.get()]); }, moveTodoUp(todo) { const currentTodos = store.todos.get(); const i = currentTodos.indexOf(todo); store.setTodos(moveItem(currentTodos, i, Math.max(i - 1, 0))); }, moveTodoDown(todo) { const currentTodos = store.todos.get(); const i = currentTodos.indexOf(todo); store.setTodos(moveItem(currentTodos, i, Math.min(i + 1, currentTodos.length - 1))); }, deleteTodo(toDelete) { store.setTodos(store.todos.get().filter((todo) => todo !== toDelete)); }, deleteCompletedTodos() { store.setTodos(store.todos.get().filter((todo) => !todo.completed)); }, }"
+          "default": "{ todos: signal(todos), count: computed(() => store.todos.get().length), completed: computed(() => store.todos.get().filter((item) => item.completed)), uncompleted: computed(() => store.todos.get().filter((item) => !item.completed)), completedCount: computed(() => store.completed.get().length), uncompletedCount: computed(() => store.uncompleted.get().length), inProgress: computed( () => store.count.get() > 0 && store.completedCount.get() < store.count.get() && store.completedCount.get() > 0 ), done: computed(() => store.count.get() > 0 && store.count.get() === store.completedCount.get()), progressRatio: computed(() => { const count = store.count.get(); return count > 0 ? store.completedCount.get() / count : 0; }), setTodos(todosValue, initialize = false) { if (todosValue?.length > 0) { store.todos.set(todosValue); } else { store.todos.set(initialize ? todos : []); } }, addTodo(task, completed = false) { if (!task) { return false; } store.setTodos([...store.todos.get(), {task, completed}]); return true; }, toggleAllTodos(completed) { store.setTodos(store.todos.get().map((todo) => ({...todo, completed}))); }, toggleTodo(todo, completed) { const todoRef = todo; todoRef.completed = completed; store.setTodos([...store.todos.get()]); }, moveTodoUp(todo) { const currentTodos = store.todos.get(); const i = currentTodos.indexOf(todo); store.setTodos(moveItem(currentTodos, i, Math.max(i - 1, 0))); }, moveTodoDown(todo) { const currentTodos = store.todos.get(); const i = currentTodos.indexOf(todo); store.setTodos(moveItem(currentTodos, i, Math.min(i + 1, currentTodos.length - 1))); }, deleteTodo(toDelete) { store.setTodos(store.todos.get().filter((todo) => todo !== toDelete)); }, deleteCompletedTodos() { store.setTodos(store.todos.get().filter((todo) => !todo.completed)); }, }"
         }
       ],
       "exports": [
@@ -297,27 +297,6 @@
           "declaration": {
             "name": "ToDoList",
             "module": "/src/todo-list/ToDoList.js"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/todo-app-styles.css.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { contain: content; display: block; box-sizing: border-box; max-width: min(80%, 780px); margin: 0 auto; padding: 1rem; background-color: var(--md-sys-color-surface-container, #f3edf7); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } div { display: flex; align-items: center; padding: 0 1.25rem; } md-icon-button { margin-left: auto; } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "src/styles/todo-app-styles.css.ts"
           }
         }
       ]
@@ -463,6 +442,27 @@
           "declaration": {
             "name": "ToDoField",
             "module": "src/todo-field/ToDoField.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/todo-app-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { contain: content; display: block; box-sizing: border-box; max-width: min(80%, 780px); margin: 0 auto; padding: 1rem; background-color: var(--md-sys-color-surface-container, #ffe9e6); } :host::before { content: \"\"; position: absolute; top: 0; right: 0; width: 2.5rem; aspect-ratio: 1; clip-path: polygon(100% 100%, 100% 0%, 0 0%); background-color: var(--md-sys-color-outline-variant, #ebbbb4); opacity: var(--_opacity, 0.3); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } div { display: flex; align-items: center; padding: 0 1.25rem; } md-icon-button { margin-left: auto; } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/todo-app-styles.css.ts"
           }
         }
       ]

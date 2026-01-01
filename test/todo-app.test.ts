@@ -30,7 +30,7 @@ describe('TodoApp', () => {
     });
 
     it('LIGHT DOM - Structure it', () => {
-      expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
+      expect(getDiffableHTML(el, {ignoreAttributes: ['id', 'style']})).toMatchSnapshot('LIGHT DOM');
     });
 
     it.skip('a11y', async () => {
@@ -60,7 +60,7 @@ describe('TodoApp', () => {
     });
 
     it('LIGHT DOM - Structure it', () => {
-      expect(getDiffableHTML(el, {ignoreAttributes: ['id']})).toMatchSnapshot('LIGHT DOM');
+      expect(getDiffableHTML(el, {ignoreAttributes: ['id', 'style']})).toMatchSnapshot('LIGHT DOM');
     });
   });
 });
