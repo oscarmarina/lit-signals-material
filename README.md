@@ -150,41 +150,6 @@ And tested using:
 | --------------------------- | ----------- | ----------- | -------------------------- | ------- |
 | `custom-element-definition` | `todo-list` | ToDoList    | /src/todo-list/ToDoList.js |         |
 
-### `src/todo-list/ToDoList.ts`:
-
-#### class: `ToDoList`, `todo-list`
-
-##### Fields
-
-| Name    | Privacy | Type    | Default | Description | Inherited From |
-| ------- | ------- | ------- | ------- | ----------- | -------------- |
-| `store` |         | `Store` | `store` |             |                |
-
-<details><summary>Private API</summary>
-
-##### Fields
-
-| Name        | Privacy   | Type | Default | Description | Inherited From |
-| ----------- | --------- | ---- | ------- | ----------- | -------------- |
-| `_todosTpl` | protected |      |         |             |                |
-
-##### Methods
-
-| Name             | Privacy   | Description | Parameters                     | Return | Inherited From |
-| ---------------- | --------- | ----------- | ------------------------------ | ------ | -------------- |
-| `_todoItemTpl`   | protected |             | `todo: Todo`                   |        |                |
-| `_toggleChecked` | private   |             | `todo: Todo, checked: boolean` |        |                |
-
-</details>
-
-<hr/>
-
-#### Exports
-
-| Kind | Name       | Declaration | Module                    | Package |
-| ---- | ---------- | ----------- | ------------------------- | ------- |
-| `js` | `ToDoList` | ToDoList    | src/todo-list/ToDoList.ts |         |
-
 ### `src/todo-field/ToDoField.ts`:
 
 #### class: `ToDoField`, `todo-field`
@@ -238,21 +203,40 @@ And tested using:
 | ---- | -------- | ----------- | --------------------------------- | ------- |
 | `js` | `styles` | styles      | src/styles/todo-app-styles.css.ts |         |
 
-### `src/todo-list/styles/todo-list-styles.css.ts`:
+### `src/todo-list/ToDoList.ts`:
 
-#### Variables
+#### class: `ToDoList`, `todo-list`
 
-| Name     | Description | Type |
-| -------- | ----------- | ---- |
-| `styles` |             |      |
+##### Fields
+
+| Name    | Privacy | Type    | Default | Description | Inherited From |
+| ------- | ------- | ------- | ------- | ----------- | -------------- |
+| `store` |         | `Store` | `store` |             |                |
+
+<details><summary>Private API</summary>
+
+##### Fields
+
+| Name        | Privacy   | Type | Default | Description | Inherited From |
+| ----------- | --------- | ---- | ------- | ----------- | -------------- |
+| `_todosTpl` | protected |      |         |             |                |
+
+##### Methods
+
+| Name             | Privacy   | Description | Parameters                     | Return | Inherited From |
+| ---------------- | --------- | ----------- | ------------------------------ | ------ | -------------- |
+| `_todoItemTpl`   | protected |             | `todo: Todo`                   |        |                |
+| `_toggleChecked` | private   |             | `todo: Todo, checked: boolean` |        |                |
+
+</details>
 
 <hr/>
 
 #### Exports
 
-| Kind | Name     | Declaration | Module                                       | Package |
-| ---- | -------- | ----------- | -------------------------------------------- | ------- |
-| `js` | `styles` | styles      | src/todo-list/styles/todo-list-styles.css.ts |         |
+| Kind | Name       | Declaration | Module                    | Package |
+| ---- | ---------- | ----------- | ------------------------- | ------- |
+| `js` | `ToDoList` | ToDoList    | src/todo-list/ToDoList.ts |         |
 
 ### `src/todo-field/styles/todo-field-styles.css.ts`:
 
@@ -269,6 +253,22 @@ And tested using:
 | Kind | Name     | Declaration | Module                                         | Package |
 | ---- | -------- | ----------- | ---------------------------------------------- | ------- |
 | `js` | `styles` | styles      | src/todo-field/styles/todo-field-styles.css.ts |         |
+
+### `src/todo-list/styles/todo-list-styles.css.ts`:
+
+#### Variables
+
+| Name     | Description | Type |
+| -------- | ----------- | ---- |
+| `styles` |             |      |
+
+<hr/>
+
+#### Exports
+
+| Kind | Name     | Declaration | Module                                       | Package |
+| ---- | -------- | ----------- | -------------------------------------------- | ------- |
+| `js` | `styles` | styles      | src/todo-list/styles/todo-list-styles.css.ts |         |
 
 ### `src/ShowLifecycle.ts`:
 

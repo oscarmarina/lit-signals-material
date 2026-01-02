@@ -1,4 +1,4 @@
-import {computed, SignalWatcher, watch} from '@lit-labs/signals';
+import {computed, watch} from '@lit-labs/signals';
 import {html, LitElement} from 'lit';
 //import {ShowLifecycle} from '../ShowLifecycle.js';
 import {state} from 'lit/decorators.js';
@@ -12,7 +12,7 @@ import '@material/web/iconbutton/icon-button.js';
 import * as icons from '../assets/icons.js';
 import {styles} from './styles/todo-list-styles.css.js';
 
-export class ToDoList extends (SignalWatcher(LitElement) as unknown as typeof LitElement) {
+export class ToDoList extends LitElement {
   static override styles = [styles];
 
   @state()

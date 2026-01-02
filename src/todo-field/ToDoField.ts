@@ -1,4 +1,4 @@
-import {SignalWatcher, watch} from '@lit-labs/signals';
+import {watch} from '@lit-labs/signals';
 import {html, LitElement} from 'lit';
 import {state} from 'lit/decorators.js';
 //import {ShowLifecycle} from '../ShowLifecycle.js';
@@ -9,7 +9,7 @@ import '@material/web/textfield/outlined-text-field.js';
 import '@material/web/checkbox/checkbox.js';
 import {styles} from './styles/todo-field-styles.css.js';
 
-export class ToDoField extends (SignalWatcher(LitElement) as unknown as typeof LitElement) {
+export class ToDoField extends LitElement {
   static override styles = [styles];
 
   #inputRef = createRef<HTMLInputElement>();

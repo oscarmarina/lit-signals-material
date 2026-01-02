@@ -303,6 +303,99 @@
     },
     {
       "kind": "javascript-module",
+      "path": "src/todo-field/ToDoField.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "ToDoField",
+          "members": [
+            {
+              "kind": "field",
+              "name": "#inputRef",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "store",
+              "type": {
+                "text": "Store"
+              },
+              "default": "store"
+            },
+            {
+              "kind": "field",
+              "name": "_textFieldTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "_summaryTpl",
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "_addTodoOnEnter",
+              "privacy": "private",
+              "parameters": [
+                {
+                  "name": "ev",
+                  "type": {
+                    "text": "KeyboardEvent & {target: HTMLInputElement}"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "_addTodoOnClick",
+              "privacy": "private"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "todo-field",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "ToDoField",
+          "declaration": {
+            "name": "ToDoField",
+            "module": "src/todo-field/ToDoField.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/styles/todo-app-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { contain: content; display: block; box-sizing: border-box; max-width: min(80%, 780px); margin: 0 auto; padding: 1rem; background-color: var(--md-sys-color-surface-container, #ffe9e6); } :host::before { content: \"\"; position: absolute; top: 0; right: 0; width: 2.5rem; aspect-ratio: 1; clip-path: polygon(100% 100%, 100% 0%, 0 0%); background-color: var(--md-sys-color-outline-variant, #ebbbb4); opacity: var(--_opacity, 0.3); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } div { display: flex; align-items: center; padding: 0 1.25rem; } md-icon-button { margin-left: auto; } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/styles/todo-app-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "src/todo-list/ToDoList.ts",
       "declarations": [
         {
@@ -358,7 +451,8 @@
             }
           ],
           "superclass": {
-            "package": "@material/web/list/list.js"
+            "name": "LitElement",
+            "package": "lit"
           },
           "tagName": "todo-list",
           "customElement": true
@@ -371,119 +465,6 @@
           "declaration": {
             "name": "ToDoList",
             "module": "src/todo-list/ToDoList.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/todo-field/ToDoField.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "ToDoField",
-          "members": [
-            {
-              "kind": "field",
-              "name": "#inputRef",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "store",
-              "type": {
-                "text": "Store"
-              },
-              "default": "store"
-            },
-            {
-              "kind": "field",
-              "name": "_textFieldTpl",
-              "privacy": "protected",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "_summaryTpl",
-              "privacy": "protected",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "_addTodoOnEnter",
-              "privacy": "private",
-              "parameters": [
-                {
-                  "name": "ev",
-                  "type": {
-                    "text": "KeyboardEvent & {target: HTMLInputElement}"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "_addTodoOnClick",
-              "privacy": "private"
-            }
-          ],
-          "superclass": {
-            "package": "@material/web/button/filled-button.js"
-          },
-          "tagName": "todo-field",
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "ToDoField",
-          "declaration": {
-            "name": "ToDoField",
-            "module": "src/todo-field/ToDoField.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/styles/todo-app-styles.css.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { contain: content; display: block; box-sizing: border-box; max-width: min(80%, 780px); margin: 0 auto; padding: 1rem; background-color: var(--md-sys-color-surface-container, #ffe9e6); } :host::before { content: \"\"; position: absolute; top: 0; right: 0; width: 2.5rem; aspect-ratio: 1; clip-path: polygon(100% 100%, 100% 0%, 0 0%); background-color: var(--md-sys-color-outline-variant, #ebbbb4); opacity: var(--_opacity, 0.3); } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } div { display: flex; align-items: center; padding: 0 1.25rem; } md-icon-button { margin-left: auto; } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "src/styles/todo-app-styles.css.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "src/todo-list/styles/todo-list-styles.css.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "styles",
-          "default": "css` :host { --md-list-item-top-space: 0; --md-list-item-bottom-space: 0; --one-line-container-height: 3.5rem; --mark-color: var(--md-sys-color-surface-container); display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-list { padding: 0; border-bottom: 0.0625rem solid var(--mark-color); } md-list-item:not(:last-child) { border-bottom: 0.125rem solid var(--mark-color); } [slot=start] { display: flex; align-items: center; width: 100%; min-height: var(--one-line-container-height); cursor: pointer; } [slot=start] > * { margin-right: 1rem; } [slot=end] { position: relative; flex: none; padding: 0.125rem; } [slot=end]::before { content: \"\"; display: block; position: absolute; inset: 0; background-color: var(--md-sys-color-on-surface, #1d1b20); opacity: 0.08; border-radius: 0.125rem; } `"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "styles",
-          "declaration": {
-            "name": "styles",
-            "module": "src/todo-list/styles/todo-list-styles.css.ts"
           }
         }
       ]
@@ -505,6 +486,27 @@
           "declaration": {
             "name": "styles",
             "module": "src/todo-field/styles/todo-field-styles.css.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "src/todo-list/styles/todo-list-styles.css.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "styles",
+          "default": "css` :host { --md-list-item-top-space: 0; --md-list-item-bottom-space: 0; --one-line-container-height: 3.5rem; --mark-color: var(--md-sys-color-surface-container); display: block; box-sizing: border-box; } :host([hidden]), [hidden] { display: none !important; } *, *::before, *::after { box-sizing: inherit; } md-checkbox { vertical-align: middle; } md-list { padding: 0; border-bottom: 0.0625rem solid var(--mark-color); } md-list-item:not(:last-child) { border-bottom: 0.125rem solid var(--mark-color); } [slot=start] { display: flex; align-items: center; width: 100%; min-height: var(--one-line-container-height); cursor: pointer; } [slot=start] > * { margin-right: 1rem; } [slot=end] { position: relative; flex: none; padding: 0.125rem; } [slot=end]::before { content: \"\"; display: block; position: absolute; inset: 0; background-color: var(--md-sys-color-on-surface, #1d1b20); opacity: 0.08; border-radius: 0.125rem; } `"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "styles",
+          "declaration": {
+            "name": "styles",
+            "module": "src/todo-list/styles/todo-list-styles.css.ts"
           }
         }
       ]
